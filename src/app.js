@@ -75,7 +75,7 @@ const create = () => {
     for (let x = 1; x < 15; x++) {
       for (let y = 1; y < 6; y++) {
         creatures.push(
-          new Creature({
+          new Enemy({
             x: x * 50, //game.world.randomX
             y: y * 50,
             velocity: { x: 700, y: 20 },
@@ -101,7 +101,7 @@ const render = () => {
   graphics.clear();
 
   // Bg
-  graphics.beginFill(0xeeeeee, 1);
+  graphics.beginFill(0x000000, 1);
   graphics.drawRect(0, 0, game.width, game.height);
   graphics.endFill();
 

@@ -19,7 +19,7 @@ class Creature {
     this.sprite.body.collides([this.props.collisionGroup, this.props.collisionGroup]);
 
     //this.sprite.scale.set(2);
-    this.sprite.body.setCircle(38 / 2); // diameter?
+    this.sprite.body.setCircle(38 / 2.2); // diameter?
 
     this.sprite.setHealth(100);
 
