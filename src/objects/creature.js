@@ -4,18 +4,13 @@ class Creature {
     this.props = {
       x: props.x ? props.x : 100,
       y: props.y ? props.y : 100,
-      acceleration: props.acceleration ? props.acceleration : 0.7,
-      velocityMax: props.velocityMax ? props.velocityMax : 700,
-      drag: props.drag ? props.drag : 10,
+      acceleration: props.acceleration ? props.acceleration : 4,
       velocity: props.velocity ? props.velocity : { x: 0, y: 0 },
-      damping: props.damping ? props.damping : 0.99, // 0 -> 1
-      angularDamping: props.angularDamping ? props.angularDamping : 0.5, // 0 -> 1
+      damping: props.damping ? props.damping : 0.999, // 0 -> 1
+      angularDamping: props.angularDamping ? props.angularDamping : 0.9, // 0 -> 1
       sprite: props.sprite ? props.sprite : 'creature',
       collisionGroup: props.collisionGroup
     };
-    // for (var key in props) {
-    //   this[key] = props[key];
-    // }
 
     this.sprite = this.props.collisionGroup.create(this.props.x, this.props.y, this.props.sprite);
 
@@ -32,13 +27,6 @@ class Creature {
     this.sprite.body.damping = this.props.damping;
   }
 
-  drag() {
-    //console.log(this.sprite.body.velocity);
-    //this.sprite.body.velocity.y -= Math.sign(this.sprite.body.velocity.y) * this.props.drag;
-    //console.log(this.sprite.body.velocity);
-    //this.sprite.body.velocity.x -= Math.sign(this.sprite.body.velocity.x) * this.props.drag;
-  }
-
   processCallback(a, b) {
     // When two sprites collide, return false to skip collision entirely
     return true;
@@ -53,26 +41,24 @@ class Creature {
     });
   }
 
-  velocityLimit() {
-    this.sprite.body.velocity.y = constrain(
-      this.sprite.body.velocity.y,
-      -this.props.velocityMax,
-      this.props.velocityMax
-    );
-    this.sprite.body.velocity.x = constrain(
-      this.sprite.body.velocity.x,
-      -this.props.velocityMax,
-      this.props.velocityMax
-    );
-  }
+  // Obsolete now as it's essentially taken care of by damping
+  // velocityLimit() {
+  //   this.sprite.body.velocity.y = constrain(
+  //     this.sprite.body.velocity.y,
+  //     -this.props.velocityMax,
+  //     this.props.velocityMax
+  //   );
+  //   this.sprite.body.velocity.x = constrain(
+  //     this.sprite.body.velocity.x,
+  //     -this.props.velocityMax,
+  //     this.props.velocityMax
+  //   );
+  // }
 
   update() {
     if (this.dying) {
       this.destroy();
     }
-
-    this.drag();
-    //this.velocityLimit();
   }
 
   render() {

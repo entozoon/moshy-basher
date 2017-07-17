@@ -3,7 +3,9 @@
 //
 let game,
   graphics,
-  creatures = [];
+  creatures = [],
+  gamepad,
+  gamepadConnected = false;
 
 window.onload = () => {
   // (after images)
@@ -47,6 +49,18 @@ const create = () => {
   var creatureGroup = game.add.group();
   creatureGroup.enableBody = true;
   creatureGroup.physicsBodyType = Phaser.Physics.P2JS;
+
+  game.input.gamepad.start();
+  gamepad = game.input.gamepad.pad1;
+
+  gamepad.addCallbacks(this, {
+    onConnect: function() {
+      console.log('Gamepad connected!');
+      gamepadConnected = true;
+    }
+  });
+
+  // ... other stuff ...
 
   // Need to think of a way to handle the ScaleManager resize better, surely a callback?
   setTimeout(() => {
