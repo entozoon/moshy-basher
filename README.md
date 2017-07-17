@@ -1,11 +1,11 @@
-# Trudge
+# Moshy Basher
 
-🎮 An entirely undefined open world game project
+:dancers: Smash people around in a mosh pit!
 
-## [Play now!](https://entozoon.github.io/trudge)
+## [Play now!](https://entozoon.github.io/moshy-basher)
 
-## Install to develop
+## Develope
 
-	git clone https://github.com/entozoon/trudge.git
+	git clone https://github.com/entozoon/moshy-basher.git
 	npm i
 	npm start
