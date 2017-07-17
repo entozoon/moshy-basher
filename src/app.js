@@ -27,6 +27,7 @@ const preload = () => {
   // Images..
   game.load.image('hero', 'sprites/hero.png');
   game.load.image('creature', 'sprites/creature.png');
+  game.load.image('bg', 'sprites/bg.png');
 };
 
 const create = () => {
@@ -64,6 +65,12 @@ const create = () => {
 
   // Need to think of a way to handle the ScaleManager resize better, surely a callback?
   setTimeout(() => {
+    let bg = game.add.tileSprite(0, 0, game.width, game.height, 'bg');
+    bg.fixedToCamera = true;
+    // Apparently using groups is smarter than this, e.g.
+    // http://examples.phaser.io/_site/view_full.html?d=groups&f=add+a+sprite+to+group.js
+    http: game.world.sendToBack(bg);
+
     let hero = new Hero({
       x: game.width / 2,
       y: game.height / 2,
@@ -101,9 +108,9 @@ const render = () => {
   graphics.clear();
 
   // Bg
-  graphics.beginFill(0x000000, 1);
-  graphics.drawRect(0, 0, game.width, game.height);
-  graphics.endFill();
+  // graphics.beginFill(0x000000, 1);
+  // graphics.drawRect(0, 0, game.width, game.height);
+  // graphics.endFill();
 
   // Creatures
   creatures.forEach(creature => {

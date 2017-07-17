@@ -4,7 +4,7 @@
 
 ## [Play now!](https://entozoon.github.io/moshy-basher)
 
-Use a gamepad, e.g. Xbox controller for a much more rocking experience!
+* Use a gamepad, e.g. Xbox controller for a much more rocking experience! *
 
 ## Develop
 
