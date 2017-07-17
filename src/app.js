@@ -3,15 +3,14 @@
 //
 let game,
   graphics,
-  creatures = [],
-  physicalGroup;
+  creatures = [];
 
 window.onload = () => {
   // (after images)
   game = new Phaser.Game({
     width: 200, // temporary
     height: 200,
-    antialias: false,
+    antialias: true, // false is a bit janky with rotation
     renderer: Phaser.CANVAS, // force canvas. Phaser.AUTO is an alternative
     state: {
       preload: preload,
@@ -24,8 +23,8 @@ window.onload = () => {
 
 const preload = () => {
   // Images..
-  game.load.image('heroSprite', 'sprites/hero.png');
-  game.load.image('creatureSprite', 'sprites/creature.png');
+  game.load.image('hero', 'sprites/hero.png');
+  game.load.image('creature', 'sprites/creature.png');
 };
 
 const create = () => {
@@ -33,33 +32,45 @@ const create = () => {
   game.scale.parentIsWindow = true;
   graphics = game.add.graphics(0, 0);
 
-  // NB: Only sprites can be made part of the physics system, apparently!
-  physicalGroup = game.add.group();
-  physicalGroup.enableBody = true;
-  physicalGroup.physicsBodyType = Phaser.Physics.ARCADE;
+  // Physics
+  game.physics.startSystem(Phaser.Physics.P2JS);
+  game.physics.p2.setImpactEvents(true);
+  game.physics.p2.restitution = 0.8;
+
+  //  Create our collision groups. One for the player, one for the pandas
+  const creatureCollisionGroup = game.physics.p2.createCollisionGroup();
+
+  //  This part is vital if you want the objects with their own collision groups to still collide with the world bounds
+  //  (which we do) - what this does is adjust the bounds to use its own collision group.
+  game.physics.p2.updateBoundsCollisionGroup();
+
+  var creatureGroup = game.add.group();
+  creatureGroup.enableBody = true;
+  creatureGroup.physicsBodyType = Phaser.Physics.P2JS;
 
   // Need to think of a way to handle the ScaleManager resize better, surely a callback?
   setTimeout(() => {
     let hero = new Hero({
-      sprite: game.add.sprite(41, 42, 'heroSprite'),
       x: game.width / 2,
-      y: game.height / 2
+      y: game.height / 2,
+      sprite: 'hero',
+      collisionGroup: creatureGroup
     });
+    creatures.push(hero);
 
     for (let x = 1; x < 15; x++) {
       for (let y = 1; y < 6; y++) {
         creatures.push(
           new Creature({
-            x: x * 50,
+            x: x * 50, //game.world.randomX
             y: y * 50,
             velocity: { x: 700, y: 20 },
-            velocityMax: 200
+            velocityMax: 200,
+            collisionGroup: creatureGroup
           })
         );
       }
     }
-
-    creatures.push(hero);
   }, 200);
 };
 

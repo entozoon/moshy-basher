@@ -1,6 +1,6 @@
 class Hero extends Creature {
-  constructor(options) {
-    super(options);
+  constructor(props) {
+    super(props);
 
     this.keys = {
       // .isDown : bool
@@ -18,19 +18,19 @@ class Hero extends Creature {
       //this.sprite.body.velocity.y -= 0.1;
       // Refer to the amount of time dt specifically, as it handles lag like a frameskip
       let dt = game.time.time - this.keys.up.timeDown;
-      this.sprite.body.velocity.y -= dt * this.acceleration;
+      this.sprite.body.velocity.y -= dt * this.props.acceleration;
     }
     if (this.keys.down.isDown) {
       let dt = game.time.time - this.keys.down.timeDown;
-      this.sprite.body.velocity.y += dt * this.acceleration;
+      this.sprite.body.velocity.y += dt * this.props.acceleration;
     }
     if (this.keys.left.isDown) {
       let dt = game.time.time - this.keys.left.timeDown;
-      this.sprite.body.velocity.x -= dt * this.acceleration;
+      this.sprite.body.velocity.x -= dt * this.props.acceleration;
     }
     if (this.keys.right.isDown) {
       let dt = game.time.time - this.keys.right.timeDown;
-      this.sprite.body.velocity.x += dt * this.acceleration;
+      this.sprite.body.velocity.x += dt * this.props.acceleration;
     }
 
     this.velocityLimit();
