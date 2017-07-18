@@ -4,6 +4,7 @@
 let game,
   graphics,
   creatures = [],
+  creatureGroup,
   gamepad,
   gamepadConnected = false;
 
@@ -47,7 +48,7 @@ const create = () => {
   //  (which we do) - what this does is adjust the bounds to use its own collision group.
   game.physics.p2.updateBoundsCollisionGroup();
 
-  var creatureGroup = game.add.group();
+  creatureGroup = game.add.group();
   creatureGroup.enableBody = true;
   creatureGroup.physicsBodyType = Phaser.Physics.P2JS;
 
@@ -69,18 +70,18 @@ const create = () => {
     bg.fixedToCamera = true;
     // Apparently using groups is smarter than this, e.g.
     // http://examples.phaser.io/_site/view_full.html?d=groups&f=add+a+sprite+to+group.js
-    http: game.world.sendToBack(bg);
+    game.world.sendToBack(bg);
 
-    let hero = new Hero({
-      x: game.width / 2,
-      y: game.height / 2,
-      sprite: 'hero',
-      collisionGroup: creatureGroup
-    });
-    creatures.push(hero);
+    /**
+     * z-index !
+     * These work by having the last thing in the group being on top
+     * Or in this case, their order in the creatures array I guess?
+     * UPDATE it's actually the order of sprites within the  collision group
+     * they're magically inside of, via setCollisionGroup
+     */
 
-    for (let x = 1; x < 15; x++) {
-      for (let y = 1; y < 6; y++) {
+    for (let x = 1; x <= 10; x++) {
+      for (let y = 6; y >= 1; y--) {
         creatures.push(
           new Enemy({
             x: x * 50, //game.world.randomX
@@ -92,6 +93,14 @@ const create = () => {
         );
       }
     }
+
+    let hero = new Hero({
+      x: game.width / 2,
+      y: game.height / 2,
+      sprite: 'hero',
+      collisionGroup: creatureGroup
+    });
+    creatures.push(hero);
   }, 200);
 };
 
@@ -99,7 +108,13 @@ const update = () => {
   // Creatures
   creatures.forEach(creature => {
     //console.log(creature.id + ' of ' + creatures.length);
+    if (creature === null) return;
     creature.update();
+  });
+
+  // // Re-order array based on y position, for z-index reasons
+  creatureGroup.children = creatureGroup.children.sort(function(a, b) {
+    return a.position.y - b.position.y;
   });
 };
 
@@ -114,6 +129,11 @@ const render = () => {
 
   // Creatures
   creatures.forEach(creature => {
+    if (creature === null) return;
     creature.render();
   });
+
+  // if (creatures[0]) {
+  //   console.log(creatures[0].sprite.position.y);
+  // }
 };

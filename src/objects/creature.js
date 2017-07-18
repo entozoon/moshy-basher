@@ -62,6 +62,6 @@ class Creature {
   }
 
   render() {
-    game.debug.body(this.sprite);
+    //game.debug.body(this.sprite);
   }
 }
