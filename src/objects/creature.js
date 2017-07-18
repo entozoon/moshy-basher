@@ -7,7 +7,7 @@ class Creature {
       acceleration: props.acceleration ? props.acceleration : 4,
       velocity: props.velocity ? props.velocity : { x: 0, y: 0 },
       damping: props.damping ? props.damping : 0.999, // 0 -> 1
-      angularDamping: props.angularDamping ? props.angularDamping : 0.9, // 0 -> 1
+      angularDamping: props.angularDamping ? props.angularDamping : 1, // 0 -> 1
       sprite: props.sprite ? props.sprite : 'creature',
       collisionGroup: props.collisionGroup
     };
