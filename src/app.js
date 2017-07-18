@@ -80,12 +80,12 @@ const create = () => {
      * they're magically inside of, via setCollisionGroup
      */
 
-    for (let x = 1; x <= 10; x++) {
+    for (let x = 1; x <= 20; x++) {
       for (let y = 6; y >= 1; y--) {
         creatures.push(
           new Enemy({
-            x: x * 50, //game.world.randomX
-            y: y * 50,
+            x: 100 + x * 25 + Math.round(Math.random() * 25), //game.world.randomX
+            y: 100 + y * 50 + Math.round(Math.random() * 25),
             velocity: { x: 700, y: 20 },
             velocityMax: 200,
             collisionGroup: creatureGroup
