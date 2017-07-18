@@ -104,6 +104,16 @@ const create = () => {
   }, 200);
 };
 
+// Shift these out to lib
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? '0' + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return '0x' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
 const update = () => {
   // Creatures
   creatures.forEach(creature => {
@@ -112,9 +122,20 @@ const update = () => {
     creature.update();
   });
 
-  // // Re-order array based on y position, for z-index reasons
+  // Re-order array based on y position, for z-index reasons
   creatureGroup.children = creatureGroup.children.sort(function(a, b) {
     return a.position.y - b.position.y;
+  });
+
+  // Tint / brightness
+  creatureGroup.children.map((sprite, i) => {
+    // This isn't the right way to do this, but.. yeah.
+    // Alsothey should have a random tint to start off with, looks sick
+    let brightness = Math.round(i / creatureGroup.children.length * 255);
+    let r = brightness,
+      g = brightness,
+      b = brightness;
+    sprite.tint = rgbToHex(r, g, b);
   });
 };
 

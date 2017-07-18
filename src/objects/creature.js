@@ -14,6 +14,9 @@ class Creature {
 
     this.sprite = this.props.collisionGroup.create(this.props.x, this.props.y, this.props.sprite);
 
+    //this.sprite.tint = Math.random() * 0xffffff;
+    //this.sprite.tint = 0x222222;
+
     this.sprite.body.setCollisionGroup(this.props.collisionGroup);
 
     this.sprite.body.collides([this.props.collisionGroup, this.props.collisionGroup]);
