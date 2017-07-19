@@ -2,7 +2,8 @@ class Enemy extends Creature {
   constructor(props) {
     super(props);
 
-    this.props.speed = Math.random() * 40;
+    this.props.maxSpeed = 10 + Math.random() * 30;
+    this.props.speed = this.props.maxSpeed;
   }
 
   moveTowardHero() {

@@ -4,12 +4,14 @@ class Creature {
     this.props = {
       x: props.x ? props.x : 100,
       y: props.y ? props.y : 100,
-      acceleration: props.acceleration ? props.acceleration : 4,
+      acceleration: props.acceleration ? props.acceleration : 5,
       velocity: props.velocity ? props.velocity : { x: 0, y: 0 },
-      damping: props.damping ? props.damping : 0.999, // 0 -> 1
+      damping: props.damping ? props.damping : 0.999, // 0 -> 1 (friction)
+      maxVelocity: props.maxVelocity ? props.maxVelocity : 400,
       angularDamping: props.angularDamping ? props.angularDamping : 1, // 0 -> 1
       sprite: props.sprite ? props.sprite : 'creature',
-      collisionGroup: props.collisionGroup
+      collisionGroup: props.collisionGroup,
+      mass: props.mass ? props.mass : 0.5 + Math.random() * 0.5 // 0.5 -> 1
     };
 
     this.sprite = this.props.collisionGroup.create(this.props.x, this.props.y, this.props.sprite);
@@ -28,6 +30,7 @@ class Creature {
 
     this.sprite.body.angularDamping = this.props.angularDamping;
     this.sprite.body.damping = this.props.damping;
+    this.sprite.body.mass = this.props.mass;
   }
 
   processCallback(a, b) {
@@ -44,25 +47,28 @@ class Creature {
     });
   }
 
-  // Obsolete now as it's essentially taken care of by damping
-  // velocityLimit() {
-  //   this.sprite.body.velocity.y = constrain(
-  //     this.sprite.body.velocity.y,
-  //     -this.props.velocityMax,
-  //     this.props.velocityMax
-  //   );
-  //   this.sprite.body.velocity.x = constrain(
-  //     this.sprite.body.velocity.x,
-  //     -this.props.velocityMax,
-  //     this.props.velocityMax
-  //   );
-  // }
+  // Mostly taken care of by damping (friction) but not quite
+  velocityLimit() {
+    this.sprite.body.velocity.x = constrain(
+      this.sprite.body.velocity.x,
+      -this.props.maxVelocity,
+      this.props.maxVelocity
+    );
+
+    this.sprite.body.velocity.y = constrain(
+      this.sprite.body.velocity.y,
+      -this.props.maxVelocity,
+      this.props.maxVelocity
+    );
+  }
 
   update() {
     if (this.dying) {
       this.destroy();
     }
     this.sprite.body.angle = 0;
+
+    this.velocityLimit();
   }
 
   render() {
