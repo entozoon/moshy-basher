@@ -16,7 +16,7 @@ window.onload = () => {
     width: 200, // temporary
     height: 200,
     antialias: true, // false is a bit janky with rotation
-    renderer: Phaser.AUTO, // Phaser.CANVAS, Phaser.WEBGL, Phaser.AUTO (WEBGL if possible)
+    renderer: mobileAndTabletcheck() ? Phaser.CANVAS : Phaser.AUTO, // Phaser.CANVAS, Phaser.WEBGL, Phaser.AUTO (WEBGL if possible)
     state: {
       preload: preload,
       create: create,
