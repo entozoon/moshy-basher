@@ -60,6 +60,8 @@ class Hero extends Creature {
     }
 
     this.handleKeyboard(dt);
+
+    super.update();
   }
 
   render() {}

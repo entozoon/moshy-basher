@@ -21,5 +21,6 @@ class Enemy extends Creature {
 
   update() {
     this.moveTowardHero();
+    super.update();
   }
 }

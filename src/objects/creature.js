@@ -62,6 +62,7 @@ class Creature {
     if (this.dying) {
       this.destroy();
     }
+    this.sprite.body.angle = 0;
   }
 
   render() {
