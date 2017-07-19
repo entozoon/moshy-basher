@@ -13,7 +13,7 @@ class Enemy extends Creature {
     //let point = new Phaser.Point(this.sprite.body.x, this.sprite.body.y);
     //let angle = point.angle(hero.sprite.body);
 
-    let vectorToHero = vectorBetweenPoints(this.sprite.body, hero.sprite.body);
+    let vectorToHero = vectorBetweenPointsOfMagnitudeOne(this.sprite.body, hero.sprite.body);
 
     this.sprite.body.velocity.y = vectorToHero.y * this.props.speed;
     this.sprite.body.velocity.x = vectorToHero.x * this.props.speed;

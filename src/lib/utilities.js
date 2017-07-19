@@ -13,7 +13,7 @@ const constrain = (value, min, max) => {
 //  /   |
 // A--x--
 //
-const vectorBetweenPoints = (a, b) => {
+const vectorBetweenPointsOfMagnitudeOne = (a, b) => {
   const x = b.x - a.x,
     y = b.y - a.y;
 
