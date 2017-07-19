@@ -4,3 +4,27 @@ const constrain = (value, min, max) => {
   if (value > max) return max;
   return value;
 };
+
+// Vector
+//      B
+//     /|
+//   M/ |
+//   /  y  Where M is 1, right?
+//  /   |
+// A--x--
+//
+const vectorBetweenPoints = (a, b) => {
+  const x = b.x - a.x,
+    y = b.y - a.y;
+
+  // if y is 0, x max of 1 ?
+
+  const magnitude = Math.sqrt(x * x + y * y);
+
+  const vector = {
+    x: x / magnitude,
+    y: y / magnitude
+  };
+
+  return vector;
+};

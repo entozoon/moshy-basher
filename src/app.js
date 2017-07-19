@@ -5,6 +5,7 @@ let game,
   graphics,
   creatures = [],
   creatureGroup,
+  hero,
   gamepad,
   gamepadConnected = false;
 
@@ -80,12 +81,19 @@ const create = () => {
      * they're magically inside of, via setCollisionGroup
      */
 
+    let center = {
+      x: game.world.width / 2,
+      y: game.world.height / 2
+    }
+
     for (let x = 1; x <= 20; x++) {
       for (let y = 6; y >= 1; y--) {
         creatures.push(
           new Enemy({
-            x: 100 + x * 25 + Math.round(Math.random() * 25), //game.world.randomX
-            y: 100 + y * 50 + Math.round(Math.random() * 25),
+            //x: center.x + (Math.random() * 2 - 1) * 75, // near center
+            //y: center.y + (Math.random() * 2 - 1) * 75,
+            x: game.world.randomX,
+            y: game.world.randomY,
             velocity: { x: 700, y: 20 },
             velocityMax: 200,
             collisionGroup: creatureGroup
@@ -94,7 +102,7 @@ const create = () => {
       }
     }
 
-    let hero = new Hero({
+    hero = new Hero({
       x: game.width / 2,
       y: game.height / 2,
       sprite: 'hero',
