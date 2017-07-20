@@ -1,3 +1,6 @@
+function wat() {
+  console.log('wat');
+}
 class Hero extends Creature {
   constructor(props) {
     super(props);
@@ -21,19 +24,17 @@ class Hero extends Creature {
     //   this.collision,
     //   this
     // );
-    //
-    // this.sprite.body.createBodyCallback(
-    //   creatureGroup,
-    //   function() {
-    //     console.log('dwa');
-    //   },
-    //   this
-    // );
 
-    this.sprite.body.createBodyCallback(oneEnemy.sprite, this.collision, this);
+    //this.sprite.body.setCollisionGroup(heroCollisionGroupWat);
+
+    //this.sprite.body.createBodyCallback(oneEnemy.sprite, this.collision, this); // **
+    //this.sprite.body.createGroupCallback(this.props.collisionGroup, this.collision, this);
+    this.sprite.body.createGroupCallback(creatureCollisionGroup, wat, this);
+    // ^ This callback will only fire if this Body has been assigned a collision group.
+    // ^ Not convinced that it even works
   }
 
-  collision(a, b) {
+  collision(a, b, c, d) {
     console.log('dwa');
   }
 

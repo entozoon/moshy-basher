@@ -5,6 +5,8 @@ let game,
   graphics,
   creatures = [],
   creatureGroup,
+  creatureCollisionGroup,
+  heroCollisionGroupWat,
   hero,
   oneEnemy,
   gamepad,
@@ -45,7 +47,8 @@ const create = () => {
   game.physics.p2.setImpactEvents(true);
   game.physics.p2.restitution = 0.8;
 
-  // const creatureCollisionGroup = game.physics.p2.createCollisionGroup();
+  creatureCollisionGroup = game.physics.p2.createCollisionGroup();
+  heroCollisionGroupWat = game.physics.p2.createCollisionGroup();
 
   creatureGroup = game.add.group();
   creatureGroup.enableBody = true;
@@ -187,7 +190,7 @@ const create = () => {
       //y: center.y + (Math.random() * 2 - 1) * 75,
       x: game.width / 2 + 100,
       y: game.height / 2,
-      collisionGroup: creatureGroup
+      collisionGroup: creatureCollisionGroup
     });
     creatures.push(oneEnemy);
 
@@ -195,7 +198,7 @@ const create = () => {
       x: game.width / 2,
       y: game.height / 2,
       sprite: 'hero',
-      collisionGroup: creatureGroup,
+      collisionGroup: creatureCollisionGroup,
       mass: 2 // heavier than people around in general
     });
 

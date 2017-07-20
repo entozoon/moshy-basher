@@ -14,19 +14,20 @@ class Creature {
       mass: props.mass ? props.mass : 0.5 + Math.random() * 0.5 // 0.5 -> 1
     };
 
-    this.sprite = creatureGroup.create(this.props.x, this.props.y, this.props.sprite);
+    this.sprite = game.add.sprite(this.props.x, this.props.y, this.props.sprite);
 
     game.physics.p2.enable(this.sprite, true); // true = debugging
 
     //this.sprite.tint = Math.random() * 0xffffff;
     //this.sprite.tint = 0x222222;
 
-    // this.sprite.body.setCollisionGroup(this.props.collisionGroup); // included in create above
+    //this.sprite.body.setCollisionGroup(this.props.collisionGroup); // included in create above
+    this.sprite.body.setCollisionGroup(creatureCollisionGroup);
     //
     // this.sprite.body.collides(
     //   [this.props.collisionGroup, this.props.collisionGroup],
     //   function() {
-    //     console.log('dwa');
+    //     console.log('err');
     //   },
     //   this
     // );
