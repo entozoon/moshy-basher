@@ -6,6 +6,7 @@ let game,
   creatures = [],
   creatureGroup,
   hero,
+  oneEnemy,
   gamepad,
   gamepadConnected = false,
   filter;
@@ -44,12 +45,7 @@ const create = () => {
   game.physics.p2.setImpactEvents(true);
   game.physics.p2.restitution = 0.8;
 
-  //  Create our collision groups. One for the player, one for the pandas
-  const creatureCollisionGroup = game.physics.p2.createCollisionGroup();
-
-  //  This part is vital if you want the objects with their own collision groups to still collide with the world bounds
-  //  (which we do) - what this does is adjust the bounds to use its own collision group.
-  game.physics.p2.updateBoundsCollisionGroup();
+  // const creatureCollisionGroup = game.physics.p2.createCollisionGroup();
 
   creatureGroup = game.add.group();
   creatureGroup.enableBody = true;
@@ -172,19 +168,28 @@ const create = () => {
       y: game.world.height / 2
     };
 
-    for (let x = 1; x <= 20; x++) {
-      for (let y = 6; y >= 1; y--) {
-        creatures.push(
-          new Enemy({
-            //x: center.x + (Math.random() * 2 - 1) * 75, // near center
-            //y: center.y + (Math.random() * 2 - 1) * 75,
-            x: game.world.randomX,
-            y: game.world.randomY,
-            collisionGroup: creatureGroup
-          })
-        );
-      }
-    }
+    // for (let x = 1; x <= 4; x++) {
+    //   for (let y = 4; y >= 1; y--) {
+    //     creatures.push(
+    //       new Enemy({
+    //         //x: center.x + (Math.random() * 2 - 1) * 75, // near center
+    //         //y: center.y + (Math.random() * 2 - 1) * 75,
+    //         x: game.world.randomX,
+    //         y: game.world.randomY,
+    //         collisionGroup: creatureGroup
+    //       })
+    //     );
+    //   }
+    // }
+
+    oneEnemy = new Enemy({
+      //x: center.x + (Math.random() * 2 - 1) * 75, // near center
+      //y: center.y + (Math.random() * 2 - 1) * 75,
+      x: game.width / 2 + 100,
+      y: game.height / 2,
+      collisionGroup: creatureGroup
+    });
+    creatures.push(oneEnemy);
 
     hero = new Hero({
       x: game.width / 2,
@@ -193,8 +198,24 @@ const create = () => {
       collisionGroup: creatureGroup,
       mass: 2 // heavier than people around in general
     });
+
+    game.camera.follow(hero.sprite); // not working? or maybe? but world size..
+
+    hero.sprite.body.createBodyCallback(creatures, dwa, this);
+    // hero.sprite.body.collides(
+    //   creatureGroup,
+    //   function() {
+    //     console.log('dwa');
+    //   },
+    //   this
+    // );
+
     creatures.push(hero);
   }, 200);
+};
+
+const dwa = (a, b) => {
+  console.log('yo');
 };
 
 // Shift these out to lib

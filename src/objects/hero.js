@@ -14,6 +14,27 @@ class Hero extends Creature {
       right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
       space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     };
+
+    // this.sprite.body.setCollisionGroup(this.props.collisionGroup);
+    // this.sprite.body.collides(
+    //   [this.props.collisionGroup, this.props.collisionGroup],
+    //   this.collision,
+    //   this
+    // );
+    //
+    // this.sprite.body.createBodyCallback(
+    //   creatureGroup,
+    //   function() {
+    //     console.log('dwa');
+    //   },
+    //   this
+    // );
+
+    this.sprite.body.createBodyCallback(oneEnemy.sprite, this.collision, this);
+  }
+
+  collision(a, b) {
+    console.log('dwa');
   }
 
   handleKeyboard(dt) {

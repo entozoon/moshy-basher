@@ -14,23 +14,42 @@ class Creature {
       mass: props.mass ? props.mass : 0.5 + Math.random() * 0.5 // 0.5 -> 1
     };
 
-    this.sprite = this.props.collisionGroup.create(this.props.x, this.props.y, this.props.sprite);
+    this.sprite = creatureGroup.create(this.props.x, this.props.y, this.props.sprite);
+
+    game.physics.p2.enable(this.sprite, true); // true = debugging
 
     //this.sprite.tint = Math.random() * 0xffffff;
     //this.sprite.tint = 0x222222;
 
-    this.sprite.body.setCollisionGroup(this.props.collisionGroup);
+    // this.sprite.body.setCollisionGroup(this.props.collisionGroup); // included in create above
+    //
+    // this.sprite.body.collides(
+    //   [this.props.collisionGroup, this.props.collisionGroup],
+    //   function() {
+    //     console.log('dwa');
+    //   },
+    //   this
+    // );
 
-    this.sprite.body.collides([this.props.collisionGroup, this.props.collisionGroup]);
-
-    this.sprite.scale.set(0.5);
-    this.sprite.body.setCircle(38 / 2.2); // diameter?
-
-    this.sprite.setHealth(100);
+    //this.sprite.scale.set(0.5);
+    //this.sprite.scale.set(1.5);
+    this.sprite.width *= 2;
+    this.sprite.height *= 2;
+    this.sprite.smoothed = false;
+    this.sprite.body.setCircle(20); // diameter (gotta shift this to upper body..?)
+    //this.sprite.setHealth(100); // don't think it'll be a health/damage situation..
 
     this.sprite.body.angularDamping = this.props.angularDamping;
     this.sprite.body.damping = this.props.damping;
     this.sprite.body.mass = this.props.mass;
+    this.sprite.body.fixedRotation = true;
+
+    //this.sprite.body.collideWorldBounds = false;
+  }
+
+  collision(a, b) {
+    console.log(a);
+    console.log(b);
   }
 
   processCallback(a, b) {
@@ -66,7 +85,6 @@ class Creature {
     if (this.dying) {
       this.destroy();
     }
-    this.sprite.body.angle = 0;
 
     this.velocityLimit();
   }
