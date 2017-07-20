@@ -171,19 +171,19 @@ const create = () => {
       y: game.world.height / 2
     };
 
-    // for (let x = 1; x <= 4; x++) {
-    //   for (let y = 4; y >= 1; y--) {
-    //     creatures.push(
-    //       new Enemy({
-    //         //x: center.x + (Math.random() * 2 - 1) * 75, // near center
-    //         //y: center.y + (Math.random() * 2 - 1) * 75,
-    //         x: game.world.randomX,
-    //         y: game.world.randomY,
-    //         collisionGroup: creatureGroup
-    //       })
-    //     );
-    //   }
-    // }
+    for (let x = 1; x <= 4; x++) {
+      for (let y = 4; y >= 1; y--) {
+        creatures.push(
+          new Enemy({
+            //x: center.x + (Math.random() * 2 - 1) * 75, // near center
+            //y: center.y + (Math.random() * 2 - 1) * 75,
+            x: game.world.randomX,
+            y: game.world.randomY,
+            collisionGroup: creatureGroup
+          })
+        );
+      }
+    }
 
     oneEnemy = new Enemy({
       //x: center.x + (Math.random() * 2 - 1) * 75, // near center

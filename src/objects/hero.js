@@ -28,8 +28,10 @@ class Hero extends Creature {
     //this.sprite.body.setCollisionGroup(heroCollisionGroupWat);
 
     //this.sprite.body.createBodyCallback(oneEnemy.sprite, this.collision, this); // **
+    //
     //this.sprite.body.createGroupCallback(this.props.collisionGroup, this.collision, this);
-    this.sprite.body.createGroupCallback(creatureCollisionGroup, wat, this);
+    this.sprite.body.createGroupCallback(creatureCollisionGroup, wat, this); // y u no work?
+    this.sprite.body.createGroupCallback(creatureGroup, wat, this);
     // ^ This callback will only fire if this Body has been assigned a collision group.
     // ^ Not convinced that it even works
   }

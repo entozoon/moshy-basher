@@ -15,8 +15,9 @@ class Creature {
     };
 
     this.sprite = game.add.sprite(this.props.x, this.props.y, this.props.sprite);
+    creatureGroup.add(this.sprite);
 
-    game.physics.p2.enable(this.sprite, true); // true = debugging
+    game.physics.p2.enable(this.sprite, false); // true = debugging
 
     //this.sprite.tint = Math.random() * 0xffffff;
     //this.sprite.tint = 0x222222;
