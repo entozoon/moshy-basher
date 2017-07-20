@@ -20,4 +20,7 @@
 - Bash everyone out of the way, maybe a circular area
 - Spin around, spin dash, etc
 - Berzerker mode, neck your drink and go mental
-- Actual music
+- "Someone fell over, protect them!"
+- "A druggy is after you, run away!"
+- "Someone's drink was spiked, knock it out of their hand!"
+- Actual music (CC / composed / stream?)
