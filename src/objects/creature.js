@@ -15,23 +15,10 @@ class Creature {
     };
 
     this.sprite = game.add.sprite(this.props.x, this.props.y, this.props.sprite);
-    creatureGroup.add(this.sprite);
 
     game.physics.p2.enable(this.sprite, false); // true = debugging
 
     //this.sprite.tint = Math.random() * 0xffffff;
-    //this.sprite.tint = 0x222222;
-
-    //this.sprite.body.setCollisionGroup(this.props.collisionGroup); // included in create above
-    this.sprite.body.setCollisionGroup(creatureCollisionGroup);
-    //
-    // this.sprite.body.collides(
-    //   [this.props.collisionGroup, this.props.collisionGroup],
-    //   function() {
-    //     console.log('err');
-    //   },
-    //   this
-    // );
 
     //this.sprite.scale.set(0.5);
     //this.sprite.scale.set(1.5);
@@ -47,11 +34,20 @@ class Creature {
     this.sprite.body.fixedRotation = true;
 
     //this.sprite.body.collideWorldBounds = false;
+
+    creatureGroup.add(this.sprite);
+
+    this.sprite.body.setCollisionGroup(this.props.collisionGroup);
+
+    // Never managed to get this working:
+    //this.sprite.body.createGroupCallback(creatureCollisionGroup, this.collision, this);
+
+    // https://phaser.io/examples/v2/p2-physics/collision-groups
+    this.sprite.body.collides(creatureCollisionGroup, this.collision, this);
   }
 
-  collision(a, b) {
-    console.log(a);
-    console.log(b);
+  collision(a, b, c, d) {
+    //console.log('Creature collide');
   }
 
   processCallback(a, b) {

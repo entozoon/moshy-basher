@@ -17,27 +17,16 @@ class Hero extends Creature {
       right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
       space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     };
-
-    // this.sprite.body.setCollisionGroup(this.props.collisionGroup);
-    // this.sprite.body.collides(
-    //   [this.props.collisionGroup, this.props.collisionGroup],
-    //   this.collision,
-    //   this
-    // );
-
-    //this.sprite.body.setCollisionGroup(heroCollisionGroupWat);
-
-    //this.sprite.body.createBodyCallback(oneEnemy.sprite, this.collision, this); // **
-    //
-    //this.sprite.body.createGroupCallback(this.props.collisionGroup, this.collision, this);
-    this.sprite.body.createGroupCallback(creatureCollisionGroup, wat, this); // y u no work?
-    this.sprite.body.createGroupCallback(creatureGroup, wat, this);
-    // ^ This callback will only fire if this Body has been assigned a collision group.
-    // ^ Not convinced that it even works
   }
 
   collision(a, b, c, d) {
-    console.log('dwa');
+    console.log('Hero collide');
+    a.sprite.tint = 0xff0000;
+    b.sprite.tint = 0x00ff00;
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
   }
 
   handleKeyboard(dt) {

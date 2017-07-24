@@ -6,7 +6,6 @@ let game,
   creatures = [],
   creatureGroup,
   creatureCollisionGroup,
-  heroCollisionGroupWat,
   hero,
   oneEnemy,
   gamepad,
@@ -48,7 +47,6 @@ const create = () => {
   game.physics.p2.restitution = 0.8;
 
   creatureCollisionGroup = game.physics.p2.createCollisionGroup();
-  heroCollisionGroupWat = game.physics.p2.createCollisionGroup();
 
   creatureGroup = game.add.group();
   creatureGroup.enableBody = true;
@@ -171,15 +169,15 @@ const create = () => {
       y: game.world.height / 2
     };
 
-    for (let x = 1; x <= 4; x++) {
-      for (let y = 4; y >= 1; y--) {
+    for (let x = 1; x <= 1; x++) {
+      for (let y = 1; y >= 1; y--) {
         creatures.push(
           new Enemy({
             //x: center.x + (Math.random() * 2 - 1) * 75, // near center
             //y: center.y + (Math.random() * 2 - 1) * 75,
             x: game.world.randomX,
             y: game.world.randomY,
-            collisionGroup: creatureGroup
+            collisionGroup: creatureCollisionGroup
           })
         );
       }
