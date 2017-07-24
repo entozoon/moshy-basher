@@ -4,7 +4,7 @@ class Creature {
     this.props = {
       x: props.x ? props.x : 100,
       y: props.y ? props.y : 100,
-      acceleration: props.acceleration ? props.acceleration : 5,
+      acceleration: props.acceleration ? props.acceleration : { x: 5, y: 3 },
       velocity: props.velocity ? props.velocity : { x: 0, y: 0 },
       damping: props.damping ? props.damping : 0.999, // 0 -> 1 (friction)
       maxVelocity: props.maxVelocity ? props.maxVelocity : 400,

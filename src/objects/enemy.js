@@ -17,11 +17,13 @@ class Enemy extends Creature {
   }
 
   collision(a, b, c, d) {
-    console.log('collide (enemy)');
-    console.log(b);
     // I'm seriously considering forcing 'this' to be .sprite in all situations
     if (b.sprite.isHero) {
-      this.fallOverForAWhile(2000);
+      console.log('collide (enemy <- hero)');
+      let speed = Math.abs(b.velocity.x) + Math.abs(b.velocity.y);
+      if (speed > 200) {
+        this.fallOverForAWhile(speed * 3);
+      }
     }
   }
 

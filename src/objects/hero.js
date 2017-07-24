@@ -35,22 +35,22 @@ class Hero extends Creature {
     // UP
     if (this.keys.up.isDown) {
       // Refer to the amount of time dt specifically, as it handles lag like a frameskip
-      this.sprite.body.velocity.y -= dt * this.props.acceleration;
+      this.sprite.body.velocity.y -= dt * this.props.acceleration.y;
       //this.sprite.body.moveForward(dt * this.props.acceleration); // driving mode
     }
     // DOWN
     if (this.keys.down.isDown) {
-      this.sprite.body.velocity.y += dt * this.props.acceleration;
+      this.sprite.body.velocity.y += dt * this.props.acceleration.y;
       //this.sprite.body.moveBackward(dt * this.props.acceleration); // driving mode
     }
     // LEFT
     if (this.keys.left.isDown) {
-      this.sprite.body.velocity.x -= dt * this.props.acceleration;
+      this.sprite.body.velocity.x -= dt * this.props.acceleration.x;
       //this.sprite.body.rotateLeft(dt * this.props.acceleration); // driving mode
     }
     // RIGHT
     if (this.keys.right.isDown) {
-      this.sprite.body.velocity.x += dt * this.props.acceleration;
+      this.sprite.body.velocity.x += dt * this.props.acceleration.x;
       //this.sprite.body.rotateRight(dt * this.props.acceleration); // driving mode
     }
   }
