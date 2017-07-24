@@ -20,13 +20,13 @@ class Hero extends Creature {
   }
 
   collision(a, b, c, d) {
-    console.log('Hero collide');
-    a.sprite.tint = 0xff0000;
-    b.sprite.tint = 0x00ff00;
-    console.log(a);
-    console.log(b);
-    console.log(c);
-    console.log(d);
+    console.log('collide (hero)');
+    // a.sprite.tint = 0xff0000;
+    // b.sprite.tint = 0x00ff00;
+    // console.log(a);
+    // console.log(b);
+    // console.log(c);
+    // console.log(d);
   }
 
   handleKeyboard(dt) {

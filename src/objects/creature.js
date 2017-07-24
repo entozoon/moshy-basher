@@ -13,6 +13,9 @@ class Creature {
       collisionGroup: props.collisionGroup,
       mass: props.mass ? props.mass : 0.5 + Math.random() * 0.5 // 0.5 -> 1
     };
+    this.state = {
+      fallen: false
+    };
 
     this.sprite = game.add.sprite(this.props.x, this.props.y, this.props.sprite);
 
@@ -47,7 +50,19 @@ class Creature {
   }
 
   collision(a, b, c, d) {
-    //console.log('Creature collide');
+    console.log('collide (creature)');
+  }
+
+  fallOverForAWhile(timeout) {
+    this.fallen = true;
+    this.sprite.body.damping = 1;
+    this.sprite.tint = 0x444444;
+    clearTimeout(this.fallOverTimeout);
+    this.fallOverTimeout = setTimeout(() => {
+      this.fallen = false;
+      this.sprite.tint = 0xffffff;
+      this.sprite.body.damping = this.props.damping;
+    }, timeout);
   }
 
   processCallback(a, b) {

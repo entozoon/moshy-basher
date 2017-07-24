@@ -7,10 +7,6 @@ class Enemy extends Creature {
   }
 
   moveTowardHero() {
-    // This isn't right! hah, but..
-    // this.sprite.body.velocity.x = hero.sprite.body.x - this.sprite.body.x;
-    // this.sprite.body.velocity.y = hero.sprite.body.y - this.sprite.body.y;
-
     //let point = new Phaser.Point(this.sprite.body.x, this.sprite.body.y);
     //let angle = point.angle(hero.sprite.body);
 
@@ -20,8 +16,15 @@ class Enemy extends Creature {
     this.sprite.body.velocity.x = vectorToHero.x * this.props.speed;
   }
 
+  collision(a, b, c, d) {
+    console.log('collide (enemy)');
+    this.fallOverForAWhile(2000);
+  }
+
   update() {
-    this.moveTowardHero();
+    if (!this.fallen) {
+      this.moveTowardHero();
+    }
     super.update();
   }
 }
