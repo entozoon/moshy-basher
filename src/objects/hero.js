@@ -17,6 +17,8 @@ class Hero extends Creature {
       right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
       space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     };
+
+    this.sprite.isHero = true;
   }
 
   collision(a, b, c, d) {
