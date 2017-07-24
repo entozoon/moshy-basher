@@ -19,6 +19,8 @@ class Hero extends Creature {
     };
 
     this.sprite.isHero = true;
+    this.sprite.width *= 2;
+    this.sprite.height *= 2;
   }
 
   collision(a, b, c, d) {

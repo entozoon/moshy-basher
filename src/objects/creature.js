@@ -25,8 +25,8 @@ class Creature {
 
     //this.sprite.scale.set(0.5);
     //this.sprite.scale.set(1.5);
-    this.sprite.width *= 2;
-    this.sprite.height *= 2;
+    // this.sprite.width *= 2;
+    // this.sprite.height *= 2;
     this.sprite.smoothed = false;
     this.sprite.body.setCircle(20); // diameter (gotta shift this to upper body..?)
     //this.sprite.setHealth(100); // don't think it'll be a health/damage situation..
