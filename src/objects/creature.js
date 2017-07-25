@@ -1,5 +1,6 @@
-class Creature {
+class Creature implements DanceMoves {
   constructor(props) {
+    super(props);
     // Take props as an object with default values and bosh into 'this' for brevity
     this.props = {
       x: props.x ? props.x : 100,
@@ -13,6 +14,7 @@ class Creature {
       collisionGroup: props.collisionGroup,
       mass: props.mass ? props.mass : 0.5 + Math.random() * 0.5 // 0.5 -> 1
     };
+
     this.state = {
       fallen: false
     };
@@ -28,7 +30,7 @@ class Creature {
     // this.sprite.width *= 2;
     // this.sprite.height *= 2;
     this.sprite.smoothed = false;
-    this.sprite.body.setCircle(20); // diameter (gotta shift this to upper body..?)
+    this.sprite.body.setCircle(22); // diameter
     //this.sprite.setHealth(100); // don't think it'll be a health/damage situation..
 
     this.sprite.body.angularDamping = this.props.angularDamping;
