@@ -3829,26 +3829,26 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Game = function (_Phaser$Game) {
-    _inherits(Game, _Phaser$Game);
+  _inherits(Game, _Phaser$Game);
 
-    function Game() {
-        _classCallCheck(this, Game);
+  function Game() {
+    _classCallCheck(this, Game);
 
-        var docElement = document.documentElement;
-        var width = docElement.clientWidth > _config2.default.gameWidth ? _config2.default.gameWidth : docElement.clientWidth;
-        var height = docElement.clientHeight > _config2.default.gameHeight ? _config2.default.gameHeight : docElement.clientHeight;
+    var docElement = document.documentElement;
+    var width = docElement.clientWidth > _config2.default.gameWidth ? _config2.default.gameWidth : docElement.clientWidth;
+    var height = docElement.clientHeight > _config2.default.gameHeight ? _config2.default.gameHeight : docElement.clientHeight;
 
-        var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, width, height, _phaser2.default.CANVAS, 'content', null));
+    var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, width, height, _phaser2.default.CANVAS, 'content', null));
 
-        _this.state.add('Boot', _Boot2.default, false);
-        _this.state.add('Splash', _Splash2.default, false);
-        _this.state.add('Game', _Game2.default, false);
+    _this.state.add('Boot', _Boot2.default, false);
+    _this.state.add('Splash', _Splash2.default, false);
+    _this.state.add('Game', _Game2.default, false);
 
-        _this.state.start('Boot');
-        return _this;
-    }
+    _this.state.start('Boot');
+    return _this;
+  }
 
-    return Game;
+  return Game;
 }(_phaser2.default.Game);
 
 window.game = new Game();
