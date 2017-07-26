@@ -8,17 +8,13 @@ var pixi = path.join(phaserModule, 'build/custom/pixi.js')
 var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
 var definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'false'))
+  debug: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'false'))
 })
 
 module.exports = {
   entry: {
-    app: [
-      'babel-polyfill',
-      path.resolve(__dirname, 'src/main.js')
-    ],
+    app: ['babel-polyfill', path.resolve(__dirname, 'src/main.js')],
     vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
-
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -35,7 +31,10 @@ module.exports = {
         comments: false
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */})
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor' /* chunkName= */,
+      filename: 'vendor.bundle.js' /* filename= */
+    })
   ],
   module: {
     rules: [
@@ -52,9 +51,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'phaser': phaser,
-      'pixi': pixi,
-      'p2': p2
+      phaser: phaser,
+      pixi: pixi,
+      p2: p2
     }
   }
 }

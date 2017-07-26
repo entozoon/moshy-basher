@@ -4,7 +4,7 @@ import Phaser from 'phaser'
 
 // These can be called anything, as they're `export default`
 import BootState from './states/Boot'
-import SplashState from './states/Splash'
+import MenuState from './states/Menu'
 import GameState from './states/Game'
 
 class Game extends Phaser.Game {
@@ -19,7 +19,7 @@ class Game extends Phaser.Game {
     // this.state.start('GameOver')
     //             key,    state,     autoStart
     this.state.add('Boot', BootState, true)
-    this.state.add('Splash', SplashState, false)
+    this.state.add('Menu', MenuState, false)
     this.state.add('Game', GameState, false)
   }
 }

@@ -1,3 +1,6 @@
+//
+// BOOT
+//
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
@@ -19,6 +22,7 @@ export default class extends Phaser.State {
     })
 
     // "Loading.."
+    // We could make a loader bar sprite that's cropped by loaded percentage with this.load.setPreloadSprite()
     let text = this.add.text(this.world.centerX, this.world.centerY, 'Loading..', {
       font: '18px Arial',
       fill: '#dddddd',
@@ -27,14 +31,13 @@ export default class extends Phaser.State {
     text.anchor.setTo(0.5, 0.5)
 
     // Load splash assets (synchronously)
-    this.load.image('loaderBg', './assets/images/loader-bg.png')
-    this.load.image('loaderBar', './assets/images/loader-bar.png')
+    // this.load.image('loaderBg', './assets/images/loader-bg.png')
   }
 
   // Runs after preload
   render () {
     if (this.loadedFonts) {
-      this.state.start('Splash')
+      this.state.start('Menu')
     }
   }
 }
