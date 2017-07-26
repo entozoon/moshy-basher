@@ -3816,10 +3816,6 @@ var _Game = __webpack_require__(/*! ./states/Game */ 123);
 
 var _Game2 = _interopRequireDefault(_Game);
 
-var _config = __webpack_require__(/*! ./config */ 120);
-
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3828,23 +3824,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// These can be called anything, as they're `export default`
+
+
 var Game = function (_Phaser$Game) {
   _inherits(Game, _Phaser$Game);
 
   function Game() {
     _classCallCheck(this, Game);
 
-    var docElement = document.documentElement;
-    var width = docElement.clientWidth > _config2.default.gameWidth ? _config2.default.gameWidth : docElement.clientWidth;
-    var height = docElement.clientHeight > _config2.default.gameHeight ? _config2.default.gameHeight : docElement.clientHeight;
+    var width = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
 
+    // this.state is a StateManager object.
+    // States are situations you can just bosh into, even from render() like
+    // this.state.start('GameOver')
+    //             key,    state,     autoStart
     var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, width, height, _phaser2.default.CANVAS, 'content', null));
 
-    _this.state.add('Boot', _Boot2.default, false);
+    _this.state.add('Boot', _Boot2.default, true);
     _this.state.add('Splash', _Splash2.default, false);
     _this.state.add('Game', _Game2.default, false);
-
-    _this.state.start('Boot');
     return _this;
   }
 
@@ -3894,27 +3894,7 @@ define(String.prototype, "padRight", "".padEnd);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 49)))
 
 /***/ }),
-/* 120 */
-/* no static exports found */
-/* all exports used */
-/*!***********************!*\
-  !*** ./src/config.js ***!
-  \***********************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  gameWidth: 760,
-  gameHeight: 400,
-  localStorageName: 'phaseres6webpack'
-};
-
-/***/ }),
+/* 120 */,
 /* 121 */
 /* no static exports found */
 /* all exports used */
@@ -4019,37 +3999,45 @@ var _class = function (_Phaser$State) {
   _createClass(_class, [{
     key: 'init',
     value: function init() {
-      this.stage.backgroundColor = '#EDEEC9';
-      this.fontsReady = false;
-      this.fontsLoaded = this.fontsLoaded.bind(this);
+      this.stage.backgroundColor = '#000000';
+      this.loadedFonts = false;
     }
   }, {
     key: 'preload',
     value: function preload() {
+      var _this2 = this;
+
+      // Fonts load asynchronously
       _webfontloader2.default.load({
         google: {
           families: ['Bangers']
         },
-        active: this.fontsLoaded
+        active: function active() {
+          _this2.loadedFonts = true;
+        }
       });
 
-      var text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: '#dddddd', align: 'center' });
+      // "Loading.."
+      var text = this.add.text(this.world.centerX, this.world.centerY, 'Loading..', {
+        font: '18px Arial',
+        fill: '#dddddd',
+        align: 'center'
+      });
       text.anchor.setTo(0.5, 0.5);
 
+      // Load splash assets (synchronously)
       this.load.image('loaderBg', './assets/images/loader-bg.png');
       this.load.image('loaderBar', './assets/images/loader-bar.png');
     }
+
+    // Runs after preload
+
   }, {
     key: 'render',
     value: function render() {
-      if (this.fontsReady) {
+      if (this.loadedFonts) {
         this.state.start('Splash');
       }
-    }
-  }, {
-    key: 'fontsLoaded',
-    value: function fontsLoaded() {
-      this.fontsReady = true;
     }
   }]);
 
@@ -4111,7 +4099,7 @@ var _class = function (_Phaser$State) {
   }, {
     key: 'create',
     value: function create() {
-      var bannerText = 'Phaser + ES6 + Webpack';
+      var bannerText = 'in states/game.js';
       var banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText);
       banner.font = 'Bangers';
       banner.padding.set(10, 16);
@@ -4195,9 +4183,8 @@ var _class = function (_Phaser$State) {
       (0, _utils.centerGameObjects)([this.loaderBg, this.loaderBar]);
 
       this.load.setPreloadSprite(this.loaderBar);
-      //
-      // load your assets
-      //
+
+      // Load game assets
       this.load.image('mushroom', 'assets/images/mushroom2.png');
     }
   }, {
