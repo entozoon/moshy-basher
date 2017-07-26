@@ -1,11 +1,11 @@
 {
-  "name": "PhaserES6Webpack",
-  "version": "1.0.0",
-  "description": "",
-  "author": "leandro cabrera <leandcabrera@gmail.com>",
+  "name": "moshy-basher",
+  "version": "0.0.1",
+  "description": "Smash people around in a mosh pit!",
+  "homepage": "https://github.com/entozoon/moshy-basher#readme",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
+    "start": "webpack",
     "deploy": "webpack --config webpack.production.config.js",
     "test": "eslint ./src/**/**.js"
   },
