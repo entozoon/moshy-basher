@@ -9996,7 +9996,7 @@ module.exports = __webpack_require__(/*! ./modules/_core */ 24);
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! babel-polyfill */119);
-module.exports = __webpack_require__(/*! C:\www\moshy-basher\phaser-es6-webpack\src\main.js */118);
+module.exports = __webpack_require__(/*! C:\www\moshy-basher\src\main.js */118);
 
 
 /***/ })

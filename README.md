@@ -12,6 +12,10 @@
 	npm i
 	npm start
 
+## Build
+
+	npm run dev
+
 ## Ideas
 
 - Different size/mass people

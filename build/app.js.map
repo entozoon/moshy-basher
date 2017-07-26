@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/app.js"],"names":["console","log","map","number"],"mappings":"AAAAA,QAAQC,GAAR,CAAY,QAAZ;AACA,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,EAAaC,GAAb,CAAiBC,UAAU;AAC1BH,SAAQC,GAAR,CAAYE,MAAZ;AACA,CAFD","file":"app.js","sourcesContent":["console.log('hello!');\n[1, 2, 3, 4].map(number => {\n\tconsole.log(number);\n});\n"]}
