@@ -7,7 +7,8 @@
   "scripts": {
     "start": "webpack",
     "deploy": "webpack --config webpack.production.config.js",
-    "test": "eslint ./src/**/**.js"
+    "test": "eslint ./src/**/**.js",
+    "readme-kanban-board": "readme-kanban-board"
   },
   "license": "MIT",
   "devDependencies": {
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "phaser-ce": "^2.8.0",
+    "readme-kanban-board": "^1.3.5",
     "webfontloader": "^1.6.28"
   }
 }
