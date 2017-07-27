@@ -15,6 +15,9 @@ export default class extends Phaser.State {
     // banner.smoothed = false
     // banner.anchor.setTo(0.5)
 
+    this.game.physics.startSystem(Phaser.Physics.P2JS)
+    this.game.physics.p2.setImpactEvents(true)
+
     this.creature = new Creature({
       game: this.game,
       x: this.world.centerX - 200,

@@ -4051,6 +4051,9 @@ var _class = function (_Phaser$State) {
       // banner.smoothed = false
       // banner.anchor.setTo(0.5)
 
+      this.game.physics.startSystem(_phaser2.default.Physics.P2JS);
+      this.game.physics.p2.setImpactEvents(true);
+
       this.creature = new _Creature2.default({
         game: this.game,
         x: this.world.centerX - 200,
@@ -9945,6 +9948,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// SEE:  phaser-ce/src/gameobjects/Sprite.js
 var _class = function (_Phaser$Sprite) {
   _inherits(_class, _Phaser$Sprite);
 
@@ -9959,13 +9963,16 @@ var _class = function (_Phaser$Sprite) {
     var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, sprite));
 
     _this.anchor.setTo(0.5);
+
+    game.physics.p2.enable(_this, false); // true = debugging
+    console.log(_this);
     return _this;
   }
 
   _createClass(_class, [{
     key: 'update',
     value: function update() {
-      this.position.x++;
+      this.body.velocity.x++;
     }
   }]);
 

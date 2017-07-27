@@ -12,11 +12,16 @@
 <!---KANBAN
 
 # To Do
-- Physics (P2)
 - Creature Objects
+- Collisions
+- Keyboard support
+- Gamepad support
+- Resizing
+- Shaders
 
 # Doing
 - Sprite rendering
+- Physics (P2)
 
 # Done
 - Boot
