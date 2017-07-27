@@ -1,4 +1,6 @@
 import Phaser from 'phaser'
+import Creature from '../sprites/Creature'
+
 //
 // RIGHT WHAT I'M GOING TO DO HERE IS
 // Composition, rather than inheritance
@@ -9,11 +11,11 @@ const barker = state => ({
   bark: () => console.log('Woof, I am ' + state.name)
 })
 
-const hero = name => {
+const hero = (name, game) => {
   let creature = new Creature({
-    game: this.game,
-    x: this.world.centerX - 200,
-    y: this.world.centerY,
+    game: game,
+    x: 200,
+    y: 200,
     sprite: 'creature'
   })
 
@@ -22,12 +24,18 @@ const hero = name => {
     speed: 100,
     position: 0
   }
-  return Object.assign({}, barker(state))
+  // return Object.assign({}, barker(state))
+  return Object.assign(creature, barker(state))
 }
-const bruno = hero('bruno')
-bruno.bark() // "Woof, I am Bruno"
-console.log(bruno.state)
 
+export default class extends Phaser.Sprite {
+  constructor ({ game, x, y, sprite }) {
+    const bruno = hero('bruno', this.game)
+    bruno.bark() // "Woof, I am Bruno"
+    console.log(bruno.state)
+  }
+}
+/*
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, sprite }) {
     super(game, x, y, sprite)
@@ -42,3 +50,4 @@ export default class extends Phaser.Sprite {
 
   update () {}
 }
+*/

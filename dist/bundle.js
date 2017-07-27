@@ -10002,93 +10002,10 @@ exports.default = _class;
 /*!*****************************!*\
   !*** ./src/sprites/Hero.js ***!
   \*****************************/
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _phaser = __webpack_require__(/*! phaser */ 40);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//
-// RIGHT WHAT I'M GOING TO DO HERE IS
-// Composition, rather than inheritance
-//
-//
-
-var barker = function barker(state) {
-  return {
-    bark: function bark() {
-      return console.log('Woof, I am ' + state.name);
-    }
-  };
-};
-
-var hero = function hero(name) {
-  var creature = new Creature({
-    game: undefined.game,
-    x: undefined.world.centerX - 200,
-    y: undefined.world.centerY,
-    sprite: 'creature'
-  });
-
-  var state = {
-    name: name,
-    speed: 100,
-    position: 0
-  };
-  return Object.assign({}, barker(state));
-};
-var bruno = hero('bruno');
-bruno.bark(); // "Woof, I am Bruno"
-console.log(bruno.state);
-
-var _class = function (_Phaser$Sprite) {
-  _inherits(_class, _Phaser$Sprite);
-
-  function _class(_ref) {
-    var game = _ref.game,
-        x = _ref.x,
-        y = _ref.y,
-        sprite = _ref.sprite;
-
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, sprite));
-
-    _this.anchor.setTo(0.5);
-
-    game.physics.p2.enable(_this, false); // true = debugging
-    _this.body.setCircle(22); // diameter
-
-    console.log(_this);
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'update',
-    value: function update() {}
-  }]);
-
-  return _class;
-}(_phaser2.default.Sprite);
-
-exports.default = _class;
+throw new Error("Module build failed: SyntaxError: C:/www/moshy-basher/src/sprites/Hero.js: 'this' is not allowed before super()\n\n\u001b[0m \u001b[90m 31 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[36mclass\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mPhaser\u001b[39m\u001b[33m.\u001b[39m\u001b[33mSprite\u001b[39m {\n \u001b[90m 32 | \u001b[39m  constructor ({ game\u001b[33m,\u001b[39m x\u001b[33m,\u001b[39m y\u001b[33m,\u001b[39m sprite }) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 | \u001b[39m    \u001b[36mconst\u001b[39m bruno \u001b[33m=\u001b[39m hero(\u001b[32m'bruno'\u001b[39m\u001b[33m,\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgame)\n \u001b[90m    | \u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 | \u001b[39m    bruno\u001b[33m.\u001b[39mbark() \u001b[90m// \"Woof, I am Bruno\"\u001b[39m\n \u001b[90m 35 | \u001b[39m    console\u001b[33m.\u001b[39mlog(bruno\u001b[33m.\u001b[39mstate)\n \u001b[90m 36 | \u001b[39m  }\u001b[0m\n");
 
 /***/ })
 ],[310]);
