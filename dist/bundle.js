@@ -4016,6 +4016,10 @@ var _Creature = __webpack_require__(/*! ../sprites/Creature */ 312);
 
 var _Creature2 = _interopRequireDefault(_Creature);
 
+var _Hero = __webpack_require__(/*! ../sprites/Hero */ 313);
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4061,8 +4065,16 @@ var _class = function (_Phaser$State) {
         sprite: 'creature'
       });
 
+      this.hero = new _Hero2.default({
+        game: this.game,
+        x: this.world.centerX + 200,
+        y: this.world.centerY,
+        sprite: 'creature'
+      });
+
       // Adds an existing display object
       this.game.add.existing(this.creature);
+      this.game.add.existing(this.hero);
     }
   }, {
     key: 'render',
@@ -9965,6 +9977,8 @@ var _class = function (_Phaser$Sprite) {
     _this.anchor.setTo(0.5);
 
     game.physics.p2.enable(_this, false); // true = debugging
+    _this.body.setCircle(22); // diameter
+
     console.log(_this);
     return _this;
   }
@@ -9974,6 +9988,101 @@ var _class = function (_Phaser$Sprite) {
     value: function update() {
       this.body.velocity.x++;
     }
+  }]);
+
+  return _class;
+}(_phaser2.default.Sprite);
+
+exports.default = _class;
+
+/***/ }),
+/* 313 */
+/* no static exports found */
+/* all exports used */
+/*!*****************************!*\
+  !*** ./src/sprites/Hero.js ***!
+  \*****************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _phaser = __webpack_require__(/*! phaser */ 40);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//
+// RIGHT WHAT I'M GOING TO DO HERE IS
+// Composition, rather than inheritance
+//
+//
+
+var barker = function barker(state) {
+  return {
+    bark: function bark() {
+      return console.log('Woof, I am ' + state.name);
+    }
+  };
+};
+
+var hero = function hero(name) {
+  var creature = new Creature({
+    game: undefined.game,
+    x: undefined.world.centerX - 200,
+    y: undefined.world.centerY,
+    sprite: 'creature'
+  });
+
+  var state = {
+    name: name,
+    speed: 100,
+    position: 0
+  };
+  return Object.assign({}, barker(state));
+};
+var bruno = hero('bruno');
+bruno.bark(); // "Woof, I am Bruno"
+console.log(bruno.state);
+
+var _class = function (_Phaser$Sprite) {
+  _inherits(_class, _Phaser$Sprite);
+
+  function _class(_ref) {
+    var game = _ref.game,
+        x = _ref.x,
+        y = _ref.y,
+        sprite = _ref.sprite;
+
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, sprite));
+
+    _this.anchor.setTo(0.5);
+
+    game.physics.p2.enable(_this, false); // true = debugging
+    _this.body.setCircle(22); // diameter
+
+    console.log(_this);
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'update',
+    value: function update() {}
   }]);
 
   return _class;

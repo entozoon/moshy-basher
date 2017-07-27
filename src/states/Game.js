@@ -1,6 +1,7 @@
 /* globals debug */
 import Phaser from 'phaser'
 import Creature from '../sprites/Creature'
+import Hero from '../sprites/Hero'
 
 export default class extends Phaser.State {
   init () {}
@@ -25,8 +26,16 @@ export default class extends Phaser.State {
       sprite: 'creature'
     })
 
+    this.hero = new Hero({
+      game: this.game,
+      x: this.world.centerX + 200,
+      y: this.world.centerY,
+      sprite: 'creature'
+    })
+
     // Adds an existing display object
     this.game.add.existing(this.creature)
+    this.game.add.existing(this.hero)
   }
 
   render () {

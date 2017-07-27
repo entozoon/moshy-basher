@@ -7,6 +7,8 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(0.5)
 
     game.physics.p2.enable(this, false) // true = debugging
+    this.body.setCircle(22) // diameter
+
     console.log(this)
   }
 
