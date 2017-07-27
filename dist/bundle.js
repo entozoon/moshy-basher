@@ -3894,65 +3894,7 @@ define(String.prototype, "padRight", "".padEnd);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 49)))
 
 /***/ }),
-/* 120 */
-/* no static exports found */
-/* all exports used */
-/*!*********************************!*\
-  !*** ./src/sprites/Mushroom.js ***!
-  \*********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _phaser = __webpack_require__(/*! phaser */ 40);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$Sprite) {
-  _inherits(_class, _Phaser$Sprite);
-
-  function _class(_ref) {
-    var game = _ref.game,
-        x = _ref.x,
-        y = _ref.y,
-        asset = _ref.asset;
-
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, asset));
-
-    _this.anchor.setTo(0.5);
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'update',
-    value: function update() {
-      this.angle += 1;
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.Sprite);
-
-exports.default = _class;
-
-/***/ }),
+/* 120 */,
 /* 121 */
 /* no static exports found */
 /* all exports used */
@@ -4070,9 +4012,9 @@ var _phaser = __webpack_require__(/*! phaser */ 40);
 
 var _phaser2 = _interopRequireDefault(_phaser);
 
-var _Mushroom = __webpack_require__(/*! ../sprites/Mushroom */ 120);
+var _Creature = __webpack_require__(/*! ../sprites/Creature */ 312);
 
-var _Mushroom2 = _interopRequireDefault(_Mushroom);
+var _Creature2 = _interopRequireDefault(_Creature);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4109,21 +4051,21 @@ var _class = function (_Phaser$State) {
       // banner.smoothed = false
       // banner.anchor.setTo(0.5)
 
-      this.mushroom = new _Mushroom2.default({
+      this.creature = new _Creature2.default({
         game: this.game,
-        x: this.world.centerX,
+        x: this.world.centerX - 200,
         y: this.world.centerY,
-        asset: 'mushroom'
+        sprite: 'creature'
       });
 
       // Adds an existing display object
-      this.game.add.existing(this.mushroom);
+      this.game.add.existing(this.creature);
     }
   }, {
     key: 'render',
     value: function render() {
       if (true) {
-        this.game.debug.spriteInfo(this.mushroom, 32, 32);
+        this.game.debug.spriteInfo(this.creature, 32, 32);
       }
     }
   }]);
@@ -4192,7 +4134,7 @@ var _class = function (_Phaser$State) {
       // centerGameObjects([this.loaderBg, this.loaderBar])
 
       // Load game assets
-      this.load.image('mushroom', 'assets/images/mushroom2.png');
+      this.load.image('creature', 'assets/images/creature.png');
     }
   }, {
     key: 'create',
@@ -9971,6 +9913,66 @@ module.exports = __webpack_require__(/*! ./modules/_core */ 24);
 __webpack_require__(/*! babel-polyfill */119);
 module.exports = __webpack_require__(/*! C:\www\moshy-basher\src\main.js */118);
 
+
+/***/ }),
+/* 311 */,
+/* 312 */
+/* no static exports found */
+/* all exports used */
+/*!*********************************!*\
+  !*** ./src/sprites/Creature.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _phaser = __webpack_require__(/*! phaser */ 40);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$Sprite) {
+  _inherits(_class, _Phaser$Sprite);
+
+  function _class(_ref) {
+    var game = _ref.game,
+        x = _ref.x,
+        y = _ref.y,
+        sprite = _ref.sprite;
+
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, sprite));
+
+    _this.anchor.setTo(0.5);
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'update',
+    value: function update() {
+      this.position.x++;
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.Sprite);
+
+exports.default = _class;
 
 /***/ })
 ],[310]);

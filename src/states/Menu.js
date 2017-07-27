@@ -17,7 +17,7 @@ export default class extends Phaser.State {
     // centerGameObjects([this.loaderBg, this.loaderBar])
 
     // Load game assets
-    this.load.image('mushroom', 'assets/images/mushroom2.png')
+    this.load.image('creature', 'assets/images/creature.png')
   }
 
   create () {
