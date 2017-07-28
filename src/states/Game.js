@@ -33,6 +33,8 @@ export default class extends Phaser.State {
       sprite: 'creature'
     })
 
+    this.hero.bark()
+
     // Adds an existing display object
     this.game.add.existing(this.creature)
     this.game.add.existing(this.hero)

@@ -7,8 +7,8 @@ import Creature from '../sprites/Creature'
 //
 //
 
-const barker = state => ({
-  bark: () => console.log('Woof, I am ' + state.name)
+const barker = name => ({
+  bark: () => console.log('Woof, I am ' + name)
 })
 
 const hero = (name, game) => {
@@ -28,11 +28,14 @@ const hero = (name, game) => {
   return Object.assign(creature, barker(state))
 }
 
+// const bruno = hero('bruno', this.game)
+// bruno.bark() // "Woof, I am Bruno"
+// console.log(bruno.state)
+//
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, sprite }) {
-    const bruno = hero('bruno', this.game)
-    bruno.bark() // "Woof, I am Bruno"
-    console.log(bruno.state)
+    super(game, x, y, sprite)
+    Object.assign(this, barker('Dufus'))
   }
 }
 /*
