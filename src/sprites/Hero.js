@@ -1,14 +1,17 @@
+//
+// Composition over inheritance!
+//
 import Phaser from 'phaser'
 import Creature from '../sprites/Creature'
 
-//
-// RIGHT WHAT I'M GOING TO DO HERE IS
-// Composition, rather than inheritance
-//
-//
-
 const barker = name => ({
   bark: () => console.log('Woof, I am ' + name)
+})
+
+const walker = () => ({
+  walk: () => {
+    this.velocity.y++
+  }
 })
 
 const hero = (name, game) => {
@@ -25,7 +28,7 @@ const hero = (name, game) => {
     position: 0
   }
   // return Object.assign({}, barker(state))
-  return Object.assign(creature, barker(state))
+  return Object.assign(creature, barker(state), walker())
 }
 
 // const bruno = hero('bruno', this.game)

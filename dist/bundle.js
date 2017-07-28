@@ -3988,18 +3988,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //
+// Composition over inheritance!
+//
 
-//
-// RIGHT WHAT I'M GOING TO DO HERE IS
-// Composition, rather than inheritance
-//
-//
 
 var barker = function barker(name) {
   return {
     bark: function bark() {
       return console.log('Woof, I am ' + name);
+    }
+  };
+};
+
+var walker = function walker() {
+  return {
+    walk: function walk() {
+      undefined.velocity.y++;
     }
   };
 };
@@ -4017,7 +4022,7 @@ var hero = function hero(name, game) {
     speed: 100,
     position: 0
     // return Object.assign({}, barker(state))
-  };return Object.assign(creature, barker(state));
+  };return Object.assign(creature, barker(state), walker());
 };
 
 // const bruno = hero('bruno', this.game)
