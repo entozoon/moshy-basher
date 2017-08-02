@@ -6,11 +6,37 @@
 
 * Use a gamepad, e.g. Xbox controller for a much more rocking experience! *
 
+## Progress
+
+![created by readme-kanban-board](http://i.imgur.com/VkXS84c.png)
+<!---KANBAN
+
+# To Do
+- Creature Objects
+- Collisions
+- Keyboard support
+- Gamepad support
+- Resizing
+- Shaders
+
+# Doing
+- Sprite rendering
+- Physics (P2)
+
+# Done
+- Boot
+
+KANBAN--->
+
 ## Develop
 
 	git clone https://github.com/entozoon/moshy-basher.git
 	npm i
 	npm start
+
+## Build
+
+	npm run dev
 
 ## Ideas
 
