@@ -9,12 +9,15 @@ var pixi = path.join(phaserModule, 'build/custom/pixi.js')
 var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
 var definePlugin = new webpack.DefinePlugin({
-  debug: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
 })
 
 module.exports = {
   entry: {
-    app: ['babel-polyfill', path.resolve(__dirname, 'src/main.js')],
+    app: [
+      'babel-polyfill',
+      path.resolve(__dirname, 'src/main.js')
+    ],
     vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
   },
   devtool: 'cheap-source-map',
@@ -27,10 +30,7 @@ module.exports = {
   watch: true,
   plugins: [
     definePlugin,
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor' /* chunkName= */,
-      filename: 'vendor.bundle.js' /* filename= */
-    }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */}),
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
@@ -54,9 +54,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      phaser: phaser,
-      pixi: pixi,
-      p2: p2
+      'phaser': phaser,
+      'pixi': pixi,
+      'p2': p2
     }
   }
 }
